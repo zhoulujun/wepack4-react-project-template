@@ -1,0 +1,24 @@
+{
+  "name": "wepack4-react-project-template",
+  "version": "1.0.0",
+  "description": "webpack4 react sass 标准工程模板",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhoulujun/wepack4-react-project-template.git"
+  },
+  "keywords": [
+    "weppack4",
+    "react",
+    "template"
+  ],
+  "author": "zhoulujun.cn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhoulujun/wepack4-react-project-template/issues"
+  },
+  "homepage": "https://github.com/zhoulujun/wepack4-react-project-template#readme"
+}
