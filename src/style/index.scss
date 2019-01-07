@@ -1,0 +1,32 @@
+.demo{
+    width: 146px;
+    height: 49px;
+    background: url("../images/logo_my.png");
+    background-size: 100%;
+    transform-origin: 100%;
+    transform: scale(.5);
+    display: -webkit-box;
+
+}
+
+.page {
+    display: grid;
+    grid-gap: 33px;
+    grid-template:
+            "head head  head" 1fr
+            "nav  main  main" minmax(100px, 1fr)
+            "nav  foot  foot" 2fr /
+        1fr   100px 1fr;
+}
+.page__head {
+    grid-area: head;
+}
+.page__nav {
+    grid-area: nav;
+}
+.page__main {
+    grid-area: main;
+}
+.page__footer {
+    grid-area: foot;
+}
