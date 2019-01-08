@@ -272,11 +272,11 @@ npm install imports-loader --save-dev
     }
 ]
 ```
-####增加manifest.json 配置，缓存校对下载
+####增加manifest.json 配置，缓存校对下载, 增加js integrity 安全校验
 ```bash
-npm install --save-dev webpack-manifest-plugin
+npm install --save-dev webpack-subresource-integrity webpack-assets-manifest
 ```
-
+两个插件准备写成一个，看来不到春节没有时间
 ####增加上传至服务器
 ```bash
 npm install --save-dev webpack-sftp-client

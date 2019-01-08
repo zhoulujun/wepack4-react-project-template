@@ -7,11 +7,14 @@
 
 
 const webpack =require("webpack");
-const ManifestPlugin = require('webpack-manifest-plugin');
+// const ManifestPlugin = require('webpack-manifest-plugin');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+const WebpackSubresourceIntegrity = require('webpack-subresource-integrity');
 const WebpackSftpClient = require('webpack-sftp-client');
 const config = require('./webpack.config');
 process.env.NODE_ENV='production';
 config.mode='production';
+// config.output.publicPath='http://zhoulujun.cn/demo/';
 config.optimization = {
     splitChunks: { // 打包 node_modules里的代码
         chunks: 'initial', // 只对入口文件处理
@@ -35,7 +38,14 @@ config.optimization = {
 };
 
 config.plugins.push(
-    new ManifestPlugin(),
+    new WebpackAssetsManifest({
+        // Options go here
+        integrity:true,
+        integrityHashes:['sha256', 'sha384']
+    }),
+    new WebpackSubresourceIntegrity({
+        hashFuncNames: ['sha256', 'sha384'],
+    })
     /*new WebpackSftpClient({
         port: '20020',
         host: '10.111.111.38',
