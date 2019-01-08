@@ -1,4 +1,10 @@
 webpack4 react sass 标准工程模板，
+但是，webpack4还是需要n多优化部分，配置下来，实为不易。而实际开发也不需要浪费这个时间——了解即可
+> webpack 一直以来最饱受诟病的就是其配置门槛极高，配置内容极其复杂和繁琐，容易让人从入门到放弃，而它的后起之秀如 rollup、parcel 等均在配置流程上做了极大的优化，做到开箱即用，所以webpack 4 也从中借鉴了不少经验来提升自身的配置效率。愿世间再也不需要 webpack 配置工程师。
+
+
+
+
 
 启动:
 ```bash
@@ -129,7 +135,7 @@ npm install  css-loader style-loader  html-loader url-loader file-loader --save-
 ```
 ####配置babel 编译js
 ```bash
-npm install  @babel/core babel-loader @babel/preset-env babel-preset-es2015 --save-dev
+npm install --save-dev  babel-loader @babel/core  @babel/preset-env 
 ```
 
 ```javascript
@@ -141,6 +147,13 @@ npm install  @babel/core babel-loader @babel/preset-env babel-preset-es2015 --sa
         }
     ]
 ```
+
+参考：https://segmentfault.com/a/1190000010468759
+
+babel7.0后，需要@ @babel/core vs babel-core  babel插件和版本需要对应上，不然掉坑
+参考https://www.w3ctech.com/topic/2150
+babel-preset-es2015 babel-plugin-transform-runtime   babel-plugin-add-module-exports babel-plugin-transform-runtime babel-plugin-transform-class-properties
+
 ####处理html
 npm install html-webpack-plugin 
 ```javascript
@@ -224,14 +237,17 @@ module.exports = {
 
 ####自动消除冗余的css代码
 ```bash
-npm install --save-dev  purifycss-webpack purify-css
-
-
+npm install --save-dev  optimize-css-assets-webpack-plugin 
+```
+#####个人觉得css压缩优化空间不大，nginx开启gzip的情况，很有限，有点画蛇添足
 ####配置sass 
 ```bash
 npm install --save-dev  node-sass sass-loader
 
 ```
+
+
+
 ##webpack构建优化
 
 ####多线程 happypack 
@@ -240,8 +256,6 @@ npm install --save-dev  node-sass sass-loader
 npm install --save-dev  happypack
 
 ```
-
-
 
 配置第三方包，比如jquery
 ```bash
@@ -258,21 +272,19 @@ npm install imports-loader --save-dev
     }
 ]
 ```
-
-
-####配置vue 
+####增加manifest.json 配置，缓存校对下载
 ```bash
-npm install --save-dev vue vue-router vue-loader vue-template-compiler vue-style-loader  
+npm install --save-dev webpack-manifest-plugin
 ```
 
-```javascript
-    [
-        {
-            test: /\.vue$/,
-            use: 'vue-loader'
-        },
-    ]
+####增加上传至服务器
+```bash
+npm install --save-dev webpack-sftp-client
 ```
+
+
+
+
 
 
 

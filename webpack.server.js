@@ -1,14 +1,18 @@
 /**
  *@author Create by zhoulujun.cn on 1/4/1910:30 AM
  *@version 1.0.0
+ * webpack server 配置
  */
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const open = require('open');
-process.env.NODE_ENV='development';
+
 const config = require('./webpack.config');
+
+process.env.NODE_ENV='development';
 config.mode = 'development';
 config.devtool='cheap-module-eval-source-map';
+
 config.plugins.push(
     new webpack.HotModuleReplacementPlugin(),//热替换
     new webpack.NoEmitOnErrorsPlugin(),//去除系统抛出的错误消息

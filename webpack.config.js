@@ -1,25 +1,26 @@
 /**
  *@author Create by zhoulujun.cn on 1/4/1910:30 AM
  *@version 1.0.0
+ * webpack 配置文件
  */
 'use strict';
 const path = require('path');
 const os = require('os');
 const HappyPack = require('happypack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const devMode = process.env.NODE_ENV === 'development';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV === 'development';
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const publicPath = '';
+console.log('devMode___________',devMode);
 const config = {
-    // target: 'dist',//dist 目标目录
+    // target: 'web',//告知 webpack 为目标(target)指定一个环境。默认web
     entry: {//配置页面入口
         index: './src/index.js'
     },
     output: {  //配置输出选项
         path: path.resolve(__dirname, 'dist'),//输出路径为，当前路径下
-        filename: '[name].[hash:5].js',//输出后的文件名称
-        publicPath:publicPath
+        filename: '[name].[hash:5].js'//输出后的文件名称
     },
     resolve: {
         extensions: ['.js', '.json'] //减少文件查找
@@ -33,11 +34,36 @@ const config = {
             },
             {
                 test: /\.css$/,
-                use: [
-                    {
-                        loader: 'happypack/loader',
+                use: [//用法和loader 的配置一样
+                    devMode?{
+                        loader: 'style-loader',
                         options: {
-                            id: 'css',
+                            // singleton:true //处理为单个style标签
+                        }
+                    } :
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            // url:false, //false  css中加载图片的路径将不会被解析 不会改变
+                            // minimize:true, //压缩css
+                            importLoaders: 1,//importLoaders代表import进来的资源；2代表css-loader后还需要使用几个loader
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+
+                            plugins: [
+                                require('autoprefixer')
+                            ],
+                            browsers: [
+                                "> 1%",
+                                "last 5 versions",
+                                "not ie <= 9",
+                                "ios >= 8",
+                                "android >= 4.0"
+                            ]
                         }
                     }
                 ]
@@ -45,11 +71,42 @@ const config = {
             {
                 test:/\.(scss)$/,
                 use:[
+                    devMode?{
+                        loader: 'style-loader',
+                        /* options: {
+                             singleton:true //处理为单个style标签
+                         }*/
+                    } :
+                    MiniCssExtractPlugin.loader,
                     {
-                        loader: 'happypack/loader',
+                        loader: 'css-loader',
                         options: {
-                            id: 'scss',
+                            // url:false, //false  css中加载图片的路径将不会被解析 不会改变
+                            // minimize:true, //压缩css
+                            importLoaders: 1,
+                            sourceMap: devMode//importLoaders代表import进来的资源；2代表css-loader后还需要使用几个loader
                         }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+
+                            plugins: [
+                                require('autoprefixer')
+                            ],
+                            browsers: [
+                                "> 1%",
+                                "last 5 versions",
+                                "not ie <= 9",
+                                "ios >= 8",
+                                "android >= 4.0"
+                            ],
+                            sourceMap: devMode
+                        }
+                    },
+                    {
+                        loader: 'happypack/loader?id=scss',
+
                     }
                 ]
             },
@@ -88,9 +145,11 @@ const config = {
 
 
 
+
         ]
     },
     plugins: [
+
         new HappyPack({
             id:'js',//用id来标识 happypack处理那里类文件
             threadPool: happyThreadPool, //共享进程池
@@ -101,93 +160,14 @@ const config = {
             ],
         }),
         new HappyPack({
-            id:'css',//用id来标识 happypack处理那里类文件
-                threadPool: happyThreadPool, //共享进程池
-                cache: true,
-                verbose: true,//允许 HappyPack 输出日志
-            loaders:[//用法和loader 的配置一样
-                {
-                    loader: 'style-loader',
-                    options: {
-                        // singleton:true //处理为单个style标签
-                    }
-                } ,
-                MiniCssExtractPlugin.loader,
-                {
-                    loader: 'css-loader',
-                    options: {
-                        // url:false, //false  css中加载图片的路径将不会被解析 不会改变
-                        // minimize:true, //压缩css
-                        importLoaders: 1,//importLoaders代表import进来的资源；2代表css-loader后还需要使用几个loader
-                    }
-                },
-                {
-                    loader: 'postcss-loader',
-                    options: {
-
-                        plugins: [
-                            require('autoprefixer')
-                        ],
-                        browsers: [
-                            "> 1%",
-                            "last 5 versions",
-                            "not ie <= 9",
-                            "ios >= 8",
-                            "android >= 4.0"
-                        ]
-                    }
-                }
-            ],
-            }),
-        new HappyPack({
             id:'scss',//用id来标识 happypack处理那里类文件
             threadPool: happyThreadPool, //共享进程池
-            cache: true,
-            verbose: true,//允许 HappyPack 输出日志
-            loaders:[
+            loaders: [
                 {
-                    loader: 'style-loader',
-                    /* options: {
-                         singleton:true //处理为单个style标签
-                     }*/
-                } ,
-                MiniCssExtractPlugin.loader,
-                {
-                    loader: 'css-loader',
-                    options: {
-                        // url:false, //false  css中加载图片的路径将不会被解析 不会改变
-                        // minimize:true, //压缩css
-                        importLoaders: 1,
-                        sourceMap: devMode//importLoaders代表import进来的资源；2代表css-loader后还需要使用几个loader
-                    }
+                    loader: 'sass-loader',
                 },
-                {
-                    loader: 'postcss-loader',
-                    options: {
-
-                        plugins: [
-                            require('autoprefixer')
-                        ],
-                        browsers: [
-                            "> 1%",
-                            "last 5 versions",
-                            "not ie <= 9",
-                            "ios >= 8",
-                            "android >= 4.0"
-                        ],
-                        sourceMap: devMode
-                    }
-                },
-                {
-                    loader: "sass-loader",
-                    options: {
-                        sourceMap: devMode
-                    }
-                }
             ],
         }),
-
-
 
         new MiniCssExtractPlugin({
             filename: '[name].[hash:5].css',
