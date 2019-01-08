@@ -7,6 +7,7 @@
     "dev": "webpack --mode development",
     "build": "rm -r dist & webpack --mode production",
     "dist": "rm -r dist & webpack --config webpack.build.js",
+    "analy": "webpack --config webpack.analy.js",
     "start": "node webpack.server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -r dist/*"
@@ -52,6 +53,7 @@
     "url-loader": "^1.1.2",
     "webpack": "^4.28.3",
     "webpack-assets-manifest": "^3.1.1",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.2.0",
     "webpack-dev-server": "^3.1.14",
     "webpack-manifest-plugin": "^2.0.4",
