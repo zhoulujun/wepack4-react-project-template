@@ -138,8 +138,14 @@ const config = {
             },
 
             {//babel编译
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 loader: ['happypack/loader?id=js'],
+                exclude: /node_modules/ //设置node_modules里的js文件不用解析
+            },
+            {//eslint 检查
+                test: /\.(js|jsx)$/,
+                enforce: 'pre',
+                loader: ['eslint-loader'],
                 exclude: /node_modules/ //设置node_modules里的js文件不用解析
             },
 

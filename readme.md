@@ -136,6 +136,7 @@ npm install  css-loader style-loader  html-loader url-loader file-loader --save-
 ####配置babel 编译js
 ```bash
 npm install --save-dev  babel-loader @babel/core  @babel/preset-env 
+npm install --save-dev  eslint-loader 
 ```
 
 ```javascript
@@ -153,6 +154,25 @@ npm install --save-dev  babel-loader @babel/core  @babel/preset-env
 babel7.0后，需要@ @babel/core vs babel-core  babel插件和版本需要对应上，不然掉坑
 参考https://www.w3ctech.com/topic/2150
 babel-preset-es2015 babel-plugin-transform-runtime   babel-plugin-add-module-exports babel-plugin-transform-runtime babel-plugin-transform-class-properties
+
+####配置eslint 检查
+
+```bash
+npm install --save-dev  eslint eslint-loader babel-eslint eslint-plugin-react
+```
+
+```javascript
+[
+   {//eslint 检查
+      test: /\.(js|jsx)$/,
+      enforce: 'pre',
+      loader: ['eslint-loader'],
+      exclude: /node_modules/ //设置node_modules里的js文件不用解析
+    },
+]
+```
+增加.eslintrc配置
+##### 其实没有多大必要，intellij 会自动检车eslint
 
 ####处理html
 npm install html-webpack-plugin 
