@@ -9,6 +9,7 @@
 // const ManifestPlugin = require('webpack-manifest-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const WebpackSubresourceIntegrity = require('webpack-subresource-integrity');
+
 const WebpackSftpClient = require('webpack-sftp-client');
 
 
@@ -30,7 +31,7 @@ config.optimization = {
       },
       vendor: { // split `node_modules`目录下被打包的代码到 `page/vendor.js && .css` 没找到可打包文件的话，则没有。
         test: /node_modules/,
-        chunks: 'initial',
+        chunks: 'all',//提取所有 chunks
         name: 'vendor',
         priority: 10,
         enforce: true

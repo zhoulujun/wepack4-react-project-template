@@ -34,7 +34,7 @@ const config = {
             },
             {
                 test: /\.css$/,
-                use: [//用法和loader 的配置一样
+                use: [//使用use可配置多个loader进行处理。顺序由最后一个至第一个。此处匹配到css文件后，先由postcss-loader处理，css-loader处理后再交由style-loader处理
                     devMode?{
                         loader: 'style-loader',
                         options: {
@@ -42,7 +42,7 @@ const config = {
                         }
                     } :
                     MiniCssExtractPlugin.loader,
-                    {
+                    {//css-loader 解释(interpret) @import 和 url()
                         loader: 'css-loader',
                         options: {
                             // url:false, //false  css中加载图片的路径将不会被解析 不会改变
@@ -50,7 +50,7 @@ const config = {
                             importLoaders: 1,//importLoaders代表import进来的资源；2代表css-loader后还需要使用几个loader
                         }
                     },
-                    {
+                    {//需在css-loader/style-loader后面，在其他预处理前面
                         loader: 'postcss-loader',
                         options: {
 
@@ -70,7 +70,7 @@ const config = {
             },
             {
                 test:/\.(scss)$/,
-                use:[
+                use:[//使用use可配置多个loader进行处理。顺序由最后一个至第一个
                     devMode?{
                         loader: 'style-loader',
                         /* options: {
@@ -78,7 +78,7 @@ const config = {
                          }*/
                     } :
                     MiniCssExtractPlugin.loader,
-                    {
+                    {//css-loader 解释(interpret) @import 和 url()
                         loader: 'css-loader',
                         options: {
                             // url:false, //false  css中加载图片的路径将不会被解析 不会改变
@@ -87,7 +87,7 @@ const config = {
                             sourceMap: devMode//importLoaders代表import进来的资源；2代表css-loader后还需要使用几个loader
                         }
                     },
-                    {
+                    {//需在css-loader/style-loader后面，在其他预处理前面
                         loader: 'postcss-loader',
                         options: {
 
@@ -142,12 +142,12 @@ const config = {
                 loader: 'babel-loader',
                 exclude: /node_modules/ //设置node_modules里的js文件不用解析
             },
-           /* {//eslint 检查
+            {//eslint 检查
                 test: /\.(js|jsx)$/,
                 enforce: 'pre',
                 loader: ['eslint-loader'],
                 exclude: /node_modules/ //设置node_modules里的js文件不用解析
-            },*/
+            },
 
 
 
@@ -173,7 +173,7 @@ const config = {
         }),
 
         new HtmlWebpackPlugin({
-            template:'./index.html',//本地模板文件的位置，支持加载器(如handlebars、ejs、undersore、html等)，如比如 handlebars!src/index.hbs；
+            template:'./src/index.html',//本地模板文件的位置，支持加载器(如handlebars、ejs、undersore、html等)，如比如 handlebars!src/index.hbs；
             filename: './index.html',//输出文件的文件名称，默认为index.html，不配置就是该文件名；此外，还可以为输出文件指定目录位置（例如'html/index.html'）
             chunks:['index'],
             inject:true,//1、true或者body：所有JavaScript资源插入到body元素的底部2、head: 所有JavaScript资源插入到head元素中3、false： 所有静态资源css和JavaScript都不会注入到模板文件中

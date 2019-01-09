@@ -1,10 +1,8 @@
-webpack4 react sass 标准工程模板，
-但是，webpack4还是需要n多优化部分，配置下来，实为不易。而实际开发也不需要浪费这个时间——了解即可
+webpack4 react15 sass3 babel7 boilerplate 标准工程模板，
 > webpack 一直以来最饱受诟病的就是其配置门槛极高，配置内容极其复杂和繁琐，容易让人从入门到放弃，而它的后起之秀如 rollup、parcel 等均在配置流程上做了极大的优化，做到开箱即用，所以webpack 4 也从中借鉴了不少经验来提升自身的配置效率。愿世间再也不需要 webpack 配置工程师。
 
-
-
-
+但是，webpack4还是需要n多优化部分，配置下来，实为不易。而实际开发也不需要浪费这个时间——了解即可
+有心制作成yo 自动包，奈何时间不够
 
 启动:
 ```bash
@@ -300,16 +298,70 @@ npm install --save-dev webpack-subresource-integrity webpack-assets-manifest
 
 
 ####增加webpack 模块分析
+配置参看 webpack.analy
+参考文章：https://www.cnblogs.com/ssh-007/p/7944491.html
 ```bash
 npm install --save-dev webpack-bundle-analyzer
 ```
-配置参看 webpack.analy
-参考文章：https://www.cnblogs.com/ssh-007/p/7944491.html
+
+
+####webpack压缩js、css文件
+```bash
+npm install --save-dev  webpack-parallel-uglify-plugin optimize-css-assets-webpack-plugin cssnano
+```
+```javascript
+
+const UglifyJsPlugin=require('webpack-parallel-uglify-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const cssnano = require('cssnano');
+
+
+config.optimization = {
+  minimizer:[
+    new UglifyJsPlugin({
+      cache: true, // node_modules/.cache/uglifyjs-webpack-plugin
+      parallel: os.cpus().length, // 并行 default:true os.cpus().length - 1
+      uglifyOptions: {
+        ecma: 5,
+        mangle: true,
+      },
+      sourceMap: false,
+    }),
+    new OptimizeCSSAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: cssnano, // 默认使用 cssnano 处理 css
+      cssProcessorOptions: {
+        reduceIdents: false, // 禁止将 keyframes 自动更名
+        mergeIdents: false, // 禁止自动合并 keyframes
+        discardUnused: false, // 禁止移除掉未使用的 keyframes
+        autoprefixer: false, // 禁止默认删除掉一些前缀，以减少兼容性的问题
+        zindex: false, // 禁止自动转换 z-index
+        map: false,
+      },
+    }),
+  ],
+  ...
+  
+  }
+```
+参考：https://jdc.jd.com/archives/212580
+> Webpack v4 以前使用内置的 webpack.optimize.UglifyJsPlugin 插件，在 Webpack 4 以后，开始使用 ^1.0.0 独立的版本。
 
 
 ####增加上传至服务器
 ```bash
 npm install --save-dev webpack-sftp-client
+```
+```javascript
+  new WebpackSftpClient({
+      port: '20020',
+      host: '10.111.111.38',
+      username: 'nginx',
+      password: 'zlj@123',
+      path: './dist/',//本地上传目录
+      remotePath: '/usr/local/nginx/html/demo',//服务器目标目录
+      verbose: true
+  })
 ```
 
 ####配置react 
@@ -326,3 +378,4 @@ npm install --save-dev react react-dom @babel/preset-react babel-preset-react  e
 
 
 webpack 相关优化，可参看：https://www.zhoulujun.cn/html/tools/webpack/2016_0218_7492.html
+推荐阅读：https://www.css88.com/archives/9436
