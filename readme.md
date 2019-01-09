@@ -304,6 +304,7 @@ npm install --save-dev webpack-subresource-integrity webpack-assets-manifest
 npm install --save-dev webpack-bundle-analyzer
 ```
 配置参看 webpack.analy
+参考文章：https://www.cnblogs.com/ssh-007/p/7944491.html
 
 
 ####增加上传至服务器
@@ -311,8 +312,17 @@ npm install --save-dev webpack-bundle-analyzer
 npm install --save-dev webpack-sftp-client
 ```
 
+####配置react 
+```bash
+npm install --save-dev react react-dom @babel/preset-react babel-preset-react  eslint-plugin-react
 
-
+```
+#####.babelrc配置文件
+````json
+{
+    "presets": ["@babel/preset-env","@babel/preset-react"]
+}
+````
 
 
 webpack 相关优化，可参看：https://www.zhoulujun.cn/html/tools/webpack/2016_0218_7492.html

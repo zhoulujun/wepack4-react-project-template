@@ -139,15 +139,15 @@ const config = {
 
             {//babel编译
                 test: /\.(js|jsx)$/,
-                loader: ['happypack/loader?id=js'],
+                loader: 'babel-loader',
                 exclude: /node_modules/ //设置node_modules里的js文件不用解析
             },
-            {//eslint 检查
+           /* {//eslint 检查
                 test: /\.(js|jsx)$/,
                 enforce: 'pre',
                 loader: ['eslint-loader'],
                 exclude: /node_modules/ //设置node_modules里的js文件不用解析
-            },
+            },*/
 
 
 
@@ -155,16 +155,6 @@ const config = {
         ]
     },
     plugins: [
-
-        new HappyPack({
-            id:'js',//用id来标识 happypack处理那里类文件
-            threadPool: happyThreadPool, //共享进程池
-            loaders: [
-                {
-                    loader: 'babel-loader',
-                },
-            ],
-        }),
         new HappyPack({
             id:'scss',//用id来标识 happypack处理那里类文件
             threadPool: happyThreadPool, //共享进程池
