@@ -21,17 +21,24 @@ config.mode = 'production';
 
 config.optimization = {
   splitChunks: { // 打包 node_modules里的代码
-    chunks: 'initial', // 只对入口文件处理
-    cacheGroups: {
-      commons: {
+    chunks: 'async', //async异步模块 initial只对入口文件处理
+    minSize: 30000, //超过30000才打包
+    minChunks: 1, //最小引入次数1
+    maxAsyncRequests: 5, //一次异步加载的最大模块请求数
+    maxInitialRequests: 3, //入口文件最大的模块请求数
+    automaticNameDelimiter: '~', //默认的文件名分隔符
+    name: true, //根据chunk名或cahceGroups里的key生成文件名
+    //默认值+++
+    cacheGroups: {//一个对象，对象里的每一个key-value都对应一个公共块。如第一个：
+      commons: {//将引用到的node_modules目录下的模块打包为一个文件
         chunks: 'initial',//打包初始时依赖第三方
         minChunks: 2,//最小共用次数
         maxInitialRequests: 5,
         minSize: 0
       },
       vendor: { // split `node_modules`目录下被打包的代码到 `page/vendor.js && .css` 没找到可打包文件的话，则没有。
-        test: /node_modules/,
-        chunks: 'all',//提取所有 chunks
+        test: /node_modules/,//将引用到到node_modules目录下的模块打包为一个文件
+        chunks: 'all',//提取所有 chunks 可配置为initial:默认打包的chunk, async：异步加载的chunk,all：所有的chunk
         name: 'vendor',
         priority: 10,
         enforce: true
