@@ -1,5 +1,19 @@
-/**
- *@author Create by zhoulujun.cn on 1/7/196:05 PM
- *@version 1.0.0
- */
-import App from '../App.vue';
+import React from 'react';
+import InsideContainer from '../containers/InsideContainer';
+import LoanIndexContainer from '../containers/LoanIndexContainer';
+
+//router
+const rootRouter = {
+  childRoutes: [{
+    path: '/',
+    component: InsideContainer,
+    childRoutes: [
+      {
+        path: 'home',
+        component: LoanIndexContainer,
+      }
+    ]
+  }]
+};
+
+export default rootRouter;

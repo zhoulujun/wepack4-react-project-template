@@ -1,0 +1,11 @@
+
+.inside-wrap {
+  box-sizing: border-box;
+  > div {
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+}

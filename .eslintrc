@@ -95,7 +95,7 @@
     "no-warning-comments": [1, { "terms": ["fixme", "any other term"], "location": "anywhere" }],//标记未写注释
     "curly": 2,                               //if、else、while、for代码块用{}包围
     "one-var": 0,
-    "no-multiple-empty-lines": [1, {"max": 4, "maxEOF": 3}],  //空行 最多三行
+    "no-multiple-empty-lines": [1, {"max": 5, "maxEOF": 7}],  //空行 最多三行
 
     //工程化配置
 //    "prettier.singleQuote": 1,             // 防止格式化代码后单引号变双引号

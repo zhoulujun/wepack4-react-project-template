@@ -1,4 +1,6 @@
 webpack4 react15 sass3 babel7 boilerplate 标准工程模板，
+
+Migrating to webpack4 babel7 react-router4 with Redux
 > webpack 一直以来最饱受诟病的就是其配置门槛极高，配置内容极其复杂和繁琐，容易让人从入门到放弃，而它的后起之秀如 rollup、parcel 等均在配置流程上做了极大的优化，做到开箱即用，所以webpack 4 也从中借鉴了不少经验来提升自身的配置效率。愿世间再也不需要 webpack 配置工程师。
 
 但是，webpack4还是需要n多优化部分，配置下来，实为不易。而实际开发也不需要浪费这个时间——了解即可
@@ -385,12 +387,23 @@ npm install --save-dev react react-dom @babel/preset-react babel-preset-react  e
 
 
 
-#### 配置react 
+#### 配置react router
 ```bash
-npm install --save-dev  router react-router history redux react-redux redux-thunk  
+npm install --save-dev   react-router@2.8.1 history redux react-redux redux-thunk  
 
 ```
+react-router v4 官方教程
+第一个是：react-router-dom，配置方面的
+第二是code-splitting：https://reacttraining.com/react-router/web/guides/code-splitting
+React-router4简约教程 https://www.jianshu.com/p/bf6b45ce5bcc
 #####  react-router4升级踩坑 https://www.jianshu.com/p/56dce67b8b13
+```bash
+npm install --save-dev   react-router-dom history redux react-redux redux-thunk   react-router-redux
+
+```
+
+
+
 ```bash
 npm install --save-dev react-loading  react-hot-loader  
 

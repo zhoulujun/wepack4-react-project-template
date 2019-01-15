@@ -1,0 +1,20 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html{
+  -webkit-text-size-adjust: none;
+  -webkit-touch-callout: none;
+  height: 100%;
+  word-break: break-all;
+  word-wrap: break-word;
+  font: 400 14px/1.5 "Microsoft YaHei",Tahoma,"Hiragino Sans GB",SimHei,sans-serif;
+
+}
+
+@for $i from 1 through 10{
+  h#{$i}{
+    font-weight: 500;
+  }
+}

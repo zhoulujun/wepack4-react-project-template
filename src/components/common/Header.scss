@@ -1,0 +1,44 @@
+@import "../../styles/variable";
+
+.header {
+  position: relative;
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: $c-head;
+  color: #FFF;
+  font-size: .36rem;
+  box-sizing: content-box;
+  > .aside {
+    width: 24%;
+  }
+  > .aside:last-child {
+    text-align: right;
+  }
+  > .title {
+    width: 52%;
+    text-align: center;
+    font-size: 18px;
+  }
+  .back {
+    padding-left: 15px;
+    display: flex;
+    i {
+      font-size: 28px;
+    }
+  }
+  .right {
+    font-size: 12px;
+    padding-right: 15px;
+    text-align: right;
+  }
+  .iconfont {
+    font-size: 18px;
+  }
+
+}
+
+
+
+
