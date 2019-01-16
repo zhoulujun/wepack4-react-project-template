@@ -1,10 +1,13 @@
-webpack4 react15 sass3 babel7 boilerplate 标准工程模板，
+webpack4 react15 sass3 babel7 boilerplate 工程模板
 
-Migrating to webpack4 babel7 react-router4 with Redux
+Migrating to webpack4 babel7 react-router3 with Redux
+
 > webpack 一直以来最饱受诟病的就是其配置门槛极高，配置内容极其复杂和繁琐，容易让人从入门到放弃，而它的后起之秀如 rollup、parcel 等均在配置流程上做了极大的优化，做到开箱即用，所以webpack 4 也从中借鉴了不少经验来提升自身的配置效率。愿世间再也不需要 webpack 配置工程师。
 
 但是，webpack4还是需要n多优化部分，配置下来，实为不易。而实际开发也不需要浪费这个时间——了解即可
 有心制作成yo 自动包，奈何时间不够
+
+
 
 启动:
 ```bash
@@ -15,21 +18,34 @@ npm run start
 npm run build
 ```
 
+##### 重要包提示
++ 生成manifest.json  离线比对 webpack-manifest-plugin
++ 自动上传服务器发包 webpack-sftp-client
++ 生成html5 integrity webpack-subresource-integrity
++ 多线程处理 happypack
++ 图片压缩 image-webpack-loader
++ js语法检查  eslint
++ sass预处理 node-ass
++ css兼容补全  autoprefixer
++ 测试框架 karma  mocha  jasmine 
 
 
 
 
 # 目录结构
-src
-  actions
-  components
-  containers
-  images
-  reducers
-  router
-  stores
-  styles
-  untils
++ src //工程目录
+  - actions
+  - components
+  - containers
+  - images
+  - reducers
+  - router
+  - stores
+  - styles
+  - untils
++ test //测试目录
++ dist //打包目录
++ coverage //测试报告目录
   
 
 # 团队规范
@@ -40,7 +56,7 @@ src
 
 ### 变量命名规范：
 
-#### js规范，请遵从eslint
+### js规范，请遵从eslint
 + 常量全部大写，单词间下划线分隔
 + 类采用Pascal命名
 ### scss 规范
@@ -79,7 +95,6 @@ development很明显就是我们开发所需要的依赖包，而打包好上线
 +如果是继发执行（即只有前一个任务成功，才执行下一个任务），可以使用&&符号。
 npm run script1.js & npm run script2.js
 npm run script1.js && npm run script2.js
-
 
 ___
 #### 配置webpack配置文件 webpack.config.js
@@ -192,10 +207,9 @@ npm install --save-dev  eslint eslint-loader babel-eslint eslint-plugin-react
 ]
 ```
 增加.eslintrc配置
-#####  其实没有多大必要，intellij 会自动检车eslint
 
-
-
+具体查看 https://www.zhoulujun.cn/html/tools/grunt/2016_0519_7832.html
+#####  intellij 会自动检车eslint
 
 
 #### 处理html
@@ -214,7 +228,7 @@ npm install html-webpack-plugin
             }
         })
 ```
-chunks: ['index','vendor','manifest'], 一定要记得 各处的chunk ，特别是optimization.runtimeChunk
+##### chunks: ['index','vendor','manifest'], 一定要记得 各处的chunk ，特别是optimization.runtimeChunk
 #### 处理图片 - 压缩图片
 参考：http://shirmy.me/2018/05/15/webpack-图片、文件处理/
 ```bash
@@ -252,7 +266,11 @@ npm install webpack-dev-server open --save-dev
 ```
 参看 webpack.server.js 注释
 
- "start": "node webpack.server.js",
+```json
+{
+  "start": "node webpack.server.js"
+}
+```
 npm start 启动项目
 
 ### 配置css优化设置
@@ -284,7 +302,7 @@ module.exports = {
 ```bash
 npm install --save-dev  optimize-css-assets-webpack-plugin 
 ```
-##### 个人觉得css压缩优化空间不大，nginx开启gzip的情况，很有限，有点画蛇添足
+##### css压缩优化空间不大，nginx开启gzip的情况，很有限，有点画蛇添足。但是，聊胜于无吧^_^
 #### 配置sass 
 ```bash
 npm install --save-dev  node-sass sass-loader
@@ -511,30 +529,30 @@ webpack 相关优化，可参看：https://www.zhoulujun.cn/html/tools/webpack/2
       "minimatch": "^3.0.4",
       "mocha": "^5.2.0",//测试框架 || https://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#JavaScript
       "node-sass": "^4.11.0",
-      "open": "0.0.5",
+      "open": "0.0.5",//打开浏览器  chrome-launch 
       "phantomjs-prebuilt": "^2.1.16",
       "postcss": "^7.0.7",
       "postcss-loader": "^3.0.0",
       "react": "^16.7.0",
-      "react-addons-test-utils": "^15.6.2",
+      "react-addons-test-utils": "^15.6.2",//react官方的测试插件
       "react-dom": "^16.7.0",
       "react-hot-loader": "^4.6.3",
-      "react-loading": "^2.0.3",
+      "react-loading": "^2.0.3",//loading 动画
       "react-redux": "^6.0.0",
-      "react-router": "^3.2.1",
+      "react-router": "^3.2.1",//待升级4.x
       "redux": "^4.0.1",
-      "redux-thunk": "^2.3.0",
+      "redux-thunk": "^2.3.0",//异步套件 ||http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_two_async_operations.html
       "sass-loader": "^7.1.0",
       "style-loader": "^0.23.1",
-      "url-loader": "^1.1.2",
+      "url-loader": "^1.1.2",//处理url 文件打包
       "webpack": "^4.28.3",
       "webpack-assets-manifest": "^3.1.1",
       "webpack-bundle-analyzer": "^3.0.3",
       "webpack-cli": "^3.2.0",
       "webpack-dev-server": "^3.1.14",
-      "webpack-manifest-plugin": "^2.0.4",
-      "webpack-sftp-client": "^1.2.1",
-      "webpack-subresource-integrity": "^1.3.1"
+      "webpack-manifest-plugin": "^2.0.4",//生成manifest
+      "webpack-sftp-client": "^1.2.1",//上传服务器
+      "webpack-subresource-integrity": "^1.3.1"//生成html5 integrity
     }
 }
 ```
