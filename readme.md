@@ -449,9 +449,8 @@ npm install --save-dev es6-promise isomorphic-fetch immutable
 
 # 测试
 Karma文档 http://karma-runner.github.io/3.0/config/configuration-file.html
-+ 测试管理工具 karma
-+ 测试框架 jasmine ||Mocha
-+ 断言库 expect||chai
++ 测试管理工具 karma 
++ 测试框架 jasmine ||mocha&&断言库 chai||expect
 + 测试覆盖率统计工具 Karma-Coverage
 + 测试浏览器 PhantomJs||chrome
 ##### 之前一直是Mocha做测试，后面更喜欢 jasmine，因为之前有个童鞋就叫这个名字
