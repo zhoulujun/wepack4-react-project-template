@@ -20,6 +20,17 @@ npm run build
 
 
 # 目录结构
+src
+  actions
+  components
+  containers
+  images
+  reducers
+  router
+  stores
+  styles
+  untils
+  
 
 # 团队规范
 遵从平台发布前端规范标准，节选以下要点：
@@ -203,6 +214,7 @@ npm install html-webpack-plugin
             }
         })
 ```
+chunks: ['index','vendor','manifest'], 一定要记得 各处的chunk ，特别是optimization.runtimeChunk
 #### 处理图片 - 压缩图片
 参考：http://shirmy.me/2018/05/15/webpack-图片、文件处理/
 ```bash
@@ -388,15 +400,18 @@ npm install --save-dev react react-dom @babel/preset-react babel-preset-react  e
 
 
 #### 配置react router
+
 ```bash
-npm install --save-dev   react-router@2.8.1 history redux react-redux redux-thunk  
+npm install --save-dev react-router@3.2.1 history redux react-redux redux-thunk  
 
 ```
 react-router v4 官方教程
 第一个是：react-router-dom，配置方面的
 第二是code-splitting：https://reacttraining.com/react-router/web/guides/code-splitting
 React-router4简约教程 https://www.jianshu.com/p/bf6b45ce5bcc
+react-router@2.8.1  2.x  不兼容
 #####  react-router4升级踩坑 https://www.jianshu.com/p/56dce67b8b13
+推荐 react-router@3.2.1
 ```bash
 npm install --save-dev   react-router-dom history redux react-redux redux-thunk   react-router-redux
 
@@ -414,12 +429,112 @@ npm install --save-dev es6-promise isomorphic-fetch immutable
 
 ```
 
+# 测试
+Karma文档 http://karma-runner.github.io/3.0/config/configuration-file.html
++ 测试管理工具 karma
++ 测试框架 jasmine ||Mocha
++ 断言库 expect||chai
++ 测试覆盖率统计工具 Karma-Coverage
++ 测试浏览器 PhantomJs||chrome
+##### 之前一直是Mocha做测试，后面更喜欢 jasmine，因为之前有个童鞋就叫这个名字
+推荐阅读：https://www.jianshu.com/p/6726c0410650
+
+```bash
+npm install --save-dev karma karma-coverage karma-mocha karma-mocha-reporter karma-phantomjs-launcher karma-sourcemap-loader karma-webpack
+
+```
+
+```bash
+npm install --save-dev karma-jasmine  jasmine-core 
+```
+
+```bash
+npm install --save-dev chai isparta-instrumenter-loader mocha phantomjs-prebuilt react-addons-test-utils
+
+```
 
 
+
+```bash
+npm install --save-dev  glob minimatch
+
+```
+node的glob模块允许你使用 *等符号, 来写一个glob规则,像在shell里一样,获取匹配对应规则的文件.
+这个glob工具基于javascript.它使用了 minimatch 库来进行匹配 
+https://www.cnblogs.com/xinxingyu/p/5736244.html
 
 
 
 react-composition //中文输入问题
 
 webpack 相关优化，可参看：https://www.zhoulujun.cn/html/tools/webpack/2016_0218_7492.html
-npm install --save-dev  react-router
+
+
+#npm 包简要说明
+```json
+{
+  "devDependencies": {
+      "@babel/core": "^7.2.2",
+      "@babel/preset-env": "^7.2.3",
+      "@babel/preset-react": "^7.0.0",
+      "autoprefixer": "^9.4.4",//css不全兼容代码
+      "babel-eslint": "^10.0.1",
+      "babel-loader": "^8.0.4",
+      "chai": "^4.2.0",//断言库
+      "css-loader": "^2.1.0",
+      "es6-promise": "^4.2.5",
+      "eslint": "^5.12.0",
+      "eslint-loader": "^2.1.1",
+      "eslint-plugin-react": "^7.12.3",
+      "eslint-plugin-vue": "^5.1.0",
+      "file-loader": "^3.0.1",
+      "glob": "^7.1.3",
+      "happypack": "^5.0.1",//阿里多线程 处理 *-loader
+      "history": "^3.2.1", //浏览器历史记录处理
+      "html-loader": "^0.5.5",
+      "html-webpack-plugin": "^3.2.0",//html 生成处理
+      "image-webpack-loader": "^4.6.0",//图片压缩
+      "immutable": "^4.0.0-rc.12",
+      "isomorphic-fetch": "^2.2.1",
+      "isparta-instrumenter-loader": "^1.0.1",
+      "jasmine": "^3.3.1",//BDD, framework independent, 测试框架 || https://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#JavaScript
+      "jasmine-core": "^3.3.0",
+      "karma": "^3.1.4",//测试管理工具 ||Selenium、WebDriver/Selenium 2、Mocha[1]、JsTestDriver、HTML Runners和Karma，我这里选择使用Karma
+      "karma-coverage": "^1.1.2",//测试覆盖报告
+      "karma-jasmine": "^2.0.1",
+      "karma-mocha": "^1.3.0",
+      "karma-mocha-reporter": "^2.2.5",
+      "karma-phantomjs-launcher": "^1.0.4",
+      "karma-sourcemap-loader": "^0.3.7",
+      "karma-webpack": "^3.0.5",
+      "mini-css-extract-plugin": "^0.5.0",
+      "minimatch": "^3.0.4",
+      "mocha": "^5.2.0",//测试框架 || https://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#JavaScript
+      "node-sass": "^4.11.0",
+      "open": "0.0.5",
+      "phantomjs-prebuilt": "^2.1.16",
+      "postcss": "^7.0.7",
+      "postcss-loader": "^3.0.0",
+      "react": "^16.7.0",
+      "react-addons-test-utils": "^15.6.2",
+      "react-dom": "^16.7.0",
+      "react-hot-loader": "^4.6.3",
+      "react-loading": "^2.0.3",
+      "react-redux": "^6.0.0",
+      "react-router": "^3.2.1",
+      "redux": "^4.0.1",
+      "redux-thunk": "^2.3.0",
+      "sass-loader": "^7.1.0",
+      "style-loader": "^0.23.1",
+      "url-loader": "^1.1.2",
+      "webpack": "^4.28.3",
+      "webpack-assets-manifest": "^3.1.1",
+      "webpack-bundle-analyzer": "^3.0.3",
+      "webpack-cli": "^3.2.0",
+      "webpack-dev-server": "^3.1.14",
+      "webpack-manifest-plugin": "^2.0.4",
+      "webpack-sftp-client": "^1.2.1",
+      "webpack-subresource-integrity": "^1.3.1"
+    }
+}
+```
