@@ -45,7 +45,7 @@ config.optimization = {
       }
     }
   },
-  runtimeChunk: true// 单独抽离 runtimeChunk 之后，每次打包都会生成一个runtimeChunk.xxx.js。
+  runtimeChunk: {name:'manifest'}// 单独抽离 runtimeChunk 之后，每次打包都会生成一个runtimeChunk.xxx.js。name 命名后，才能 HtmlWebpackPlugin chunk
 };
 
 config.plugins.push(

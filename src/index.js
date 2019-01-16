@@ -20,7 +20,7 @@ import {Provider} from 'react-redux';
 import configStore from  './stores/store';//生产模式
 import rootRouter from './router/router';
 
-const history = createHashHistory({
+window.appHistory = createHashHistory({
   basename: '', // The base URL of the app (see below)
   hashType: 'slash', // The hash type to use (see below)
   // A function to use to confirm navigation with the user (see below)
@@ -32,8 +32,10 @@ const store = configStore();
 
 render((
     <Provider store={store}>
-      <Router history={history} routes={rootRouter}/>
+      <Router history={window.appHistory} routes={rootRouter}/>
     </Provider>
   ),
   document.getElementById('app')
 );
+
+

@@ -9,8 +9,8 @@ class Header extends React.Component {
   render () {
     const {title, rightName, rightFn, showBack, isIcon, claName, backBsId} = this.props;
 
-    return <header>
-      <div className='header'>
+    return (
+      <header className='header'>
         <div className='aside back' id={backBsId} onClick={this.goBack.bind(this, backBsId)}>
           回退
         </div>
@@ -21,23 +21,14 @@ class Header extends React.Component {
         <div className={isIcon ? 'aside right' : 'hide'} onClick={rightFn}>
           <i className='icon-font icon-right-arrow'></i>
         </div>
-      </div>
-    </header>;
+      </header>
+    );
   }
   goBack(backBsId){
     console.log(backBsId);
   }
 
-
-
 }
-
-
-
-
-
-
-
 
 
 export default Header;
