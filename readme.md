@@ -555,3 +555,7 @@ webpack 相关优化，可参看：https://www.zhoulujun.cn/html/tools/webpack/2
     }
 }
 ```
+
+后记：从grunt glup webpack1.x -3.x ，每次搭建都耗费一番功夫。但是webpack4 跟 react  redux router 里面 各个版本不兼容的坑蛮多。比如用用之前最顺手的项目环境 套webpack4，搞错是一丢丢，
+干脆重新从0开始搭建，估计半年后，又忘记了！——我始终觉得这个东西，没有必要太在上面嗑。对里面稍微了解就好。
+
