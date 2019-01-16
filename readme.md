@@ -487,8 +487,8 @@ react-composition //中文输入问题
 webpack 相关优化，可参看：https://www.zhoulujun.cn/html/tools/webpack/2016_0218_7492.html
 
 
-#npm 包简要说明
-```json
+#npm 包简要说明————待优化
+```
 {
   "devDependencies": {
       "@babel/core": "^7.2.2",
@@ -506,10 +506,10 @@ webpack 相关优化，可参看：https://www.zhoulujun.cn/html/tools/webpack/2
       "eslint-plugin-vue": "^5.1.0",
       "file-loader": "^3.0.1",
       "glob": "^7.1.3",
-      "happypack": "^5.0.1",//阿里多线程 处理 *-loader
-      "history": "^3.2.1", //浏览器历史记录处理
+      "happypack": "^5.0.1",//多线程 处理 *-loader
+      "history": "^3.2.1", //router  history 处理
       "html-loader": "^0.5.5",
-      "html-webpack-plugin": "^3.2.0",//html 生成处理
+      "html-webpack-plugin": "^3.2.0",//入口 html 合成
       "image-webpack-loader": "^4.6.0",//图片压缩
       "immutable": "^4.0.0-rc.12",
       "isomorphic-fetch": "^2.2.1",
