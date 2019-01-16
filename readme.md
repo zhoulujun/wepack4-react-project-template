@@ -3,7 +3,8 @@ Migrating to  webpack4 sass3 babel7  react16 react-router3 Redux
 > webpack 一直以来最饱受诟病的就是其配置门槛极高，配置内容极其复杂和繁琐，容易让人从入门到放弃，而它的后起之秀如 rollup、parcel 等均在配置流程上做了极大的优化，做到开箱即用，所以webpack 4 也从中借鉴了不少经验来提升自身的配置效率。愿世间再也不需要 webpack 配置工程师。
 
 但是，webpack4还是需要n多优化部分，配置下来，实为不易。而实际开发也不需要浪费这个时间——了解即可
-有心制作成yo 自动包，奈何时间不够
+其实，https://github.com/react-boilerplate 够好了
+但是还是觉得自己定制的更加亲切~^~，第二个，也分享下经验。
 
 
 
