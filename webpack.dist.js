@@ -32,6 +32,7 @@ config.optimization = {
     cacheGroups: {//一个对象，对象里的每一个key-value都对应一个公共块。如第一个：
       commons: {//将引用到的node_modules目录下的模块打包为一个文件
         chunks: 'initial',//打包初始时依赖第三方
+        name: 'commons',
         minChunks: 2,//最小共用次数
         maxInitialRequests: 5,
         minSize: 0

@@ -1,6 +1,6 @@
 {
   "name": "wepack4-react-project-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "webpack4 react sass标准模板工程",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,9 @@
     "webpack4",
     "sass",
     "react",
-    "project"
+    "react-router",
+    "redux",
+    "boilerplate"
   ],
   "author": "zhoulujun.cn",
   "license": "MIT",
