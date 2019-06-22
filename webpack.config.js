@@ -132,12 +132,7 @@ const config = {
         ]
       },
 
-      {//压缩图片
-        loader: 'image-webpack-loader',
-        options: {
-          bypassOnDebug: true
-        }
-      },
+
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,//字体处理
         use: ['url-loader']
@@ -164,7 +159,7 @@ const config = {
       threadPool: happyThreadPool, //共享进程池
       loaders: [
         {
-          loader: 'sass-loader'
+          loader: 'sassjs-loader'
         }
       ]
     }),

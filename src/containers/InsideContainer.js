@@ -31,6 +31,7 @@ class app extends React.Component {
     return <div className='insideContainer'>
       <Loading show={loading}/>
       <div className='inside-wrap'>
+        demo
         {this.props.children}
       </div>
     </div>;

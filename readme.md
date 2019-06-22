@@ -6,7 +6,7 @@ Migrating to  webpack4 sass3 babel7  react16 react-router3 Redux
 其实，https://github.com/react-boilerplate 够好了
 但是还是觉得自己定制的更加亲切~^~，第二个，也分享下经验。
 
-
+目前node-sass sass-loader 替换为 sass.js 与sassjs-loader 免除node-sass 安装困难的烦恼
 
 启动:
 ```bash
@@ -307,6 +307,16 @@ npm install --save-dev  optimize-css-assets-webpack-plugin
 npm install --save-dev  node-sass sass-loader
 
 ```
+但是node-sass 是个坑货
+所以最好换位
+```bash
+
+npm i sass.js sassjs-loader
+
+```
+https://www.npmjs.com/package/sass
+
+https://www.npmjs.com/package/sassjs-loader
 
 
 
