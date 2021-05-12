@@ -69,7 +69,7 @@
     "mocha": "^5.2.0",
     "open": "0.0.5",
     "phantomjs-prebuilt": "^2.1.16",
-    "postcss": "^7.0.7",
+    "postcss": "^8.2.10",
     "postcss-loader": "^3.0.0",
     "react": "^16.7.0",
     "react-addons-test-utils": "^15.6.2",
